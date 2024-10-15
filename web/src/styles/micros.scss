@@ -1,0 +1,92 @@
+@use "../styles/layout.scss" as layout;
+@use "../styles/globals.scss" as global;
+
+$font-sizes: (
+    "s": .75rem,
+    "m": 1rem,
+    "l": 1.125rem,
+    "xl": 1.563rem,
+    "xxl": 2.188rem
+);
+
+
+// Flex
+.flex {display: flex}
+.flex.columns {flex-direction: column}
+.flex.space-between {justify-content: space-between}
+.flex.v-centered {align-items: center;}
+.flex.centered {justify-content: center;}
+.flex>.full-width {flex:1 1 100%;}
+
+@for $value from 1 through 25 {
+    .flex.gap-#{$value}px {
+       gap: #{$value}px;
+    }
+}
+
+// Padding and Margin
+@for $value from 1 through 25 {
+    .pad-#{$value}px {padding: #{$value}px;}
+    .pad-left-#{$value}px {padding-left: #{$value}px;}
+    .pad-right-#{$value}px {padding-right: #{$value}px;}
+    .pad-top-#{$value}px {padding-top: #{$value}px;}
+    .pad-bottom-#{$value}px {padding-bottom: #{$value}px;}
+    .pad-hori-#{$value}px {padding-right: #{$value}px; padding-left: #{$value}px;}
+    .pad-vert-#{$value}px {padding-top: #{$value}px; padding-bottom: #{$value}px;}
+
+    .mar-#{$value}px {margin: #{$value}px;}
+    .mar-left-#{$value}px {margin-left: #{$value}px;}
+    .mar-right-#{$value}px {margin-right: #{$value}px;}
+    .mar-vert-#{$value}px {margin-top: #{$value}px; margin-bottom: #{$value}px;}
+    .mar-top-#{$value}px {margin-top: #{$value}px;}
+    .mar-bottom-#{$value}px {margin-bottom: #{$value}px;}
+    .mar-hori-#{$value}px {margin-right: #{$value}px; margin-left: #{$value}px;}
+}
+
+// Lists
+ul.no-decor {list-style: none}
+ul.rows {display:inline-block}
+
+// Color
+.color-fg-text {color: var(--color-text)}
+.color-fg-accent {color: var(--color-accent)}
+.color-bg-3 {background-color: var(--color-base-3)}
+
+// Display
+@include layout.on-mobile {
+    .exclude-mobile {display: none}
+}
+@include layout.on-tablet {
+    .exclude-tablet {display: none}
+}
+@include layout.on-desktop {
+    .exclude-desktop {display: none}
+}
+@include layout.not-on-mobile {
+    .mobile-only {display: none}
+}
+@include layout.not-on-tablet {
+    .tablet-only {display: none}
+}
+@include layout.not-on-desktop {
+    .desktop-only {display: none}
+}
+
+// text
+@each $size-name, $font-size in $font-sizes {
+    .font-size-#{$size-name} {
+        font-size: $font-size ;
+    }
+}
+.text-no-underline {text-decoration: none}
+
+
+// Scroll
+.scrollbar-light-1::-webkit-scrollbar-thumb {background-color: var(--color-text-1);}
+.scrollbar-light-2::-webkit-scrollbar-thumb {background-color: var(--color-text-2);}
+
+.scrollbar-accent::-webkit-scrollbar-thumb {background-color: var(--color-accent);}
+
+.scrollbar-dark-1::-webkit-scrollbar-thumb {background-color: var(--color-base-1);}
+.scrollbar-dark-2::-webkit-scrollbar-thumb {background-color: var(--color-base-2);}
+.scrollbar-dark-3::-webkit-scrollbar-thumb {background-color: var(--color-base-3);}

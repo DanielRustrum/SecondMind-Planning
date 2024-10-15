@@ -1,0 +1,88 @@
+@use "@styles/layout" as layout;
+
+$layout_nav_height: 52px;
+$content_edge_seperation: 10px;
+$nav_snapping: 50px;
+
+#app__layout {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-base);
+}
+
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: $layout_nav_height;
+}
+
+main {
+  overflow-y: scroll;
+  height: calc(100vh - $layout_nav_height);
+  padding: $content_edge_seperation;
+  padding-bottom: $layout_nav_height + $content_edge_seperation;
+  margin: $layout_nav_height 0px;
+}
+
+footer {
+  height: $layout_nav_height;
+  background-color: var(--color-base-2);
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: $layout_nav_height;
+  z-index: 100;
+}
+
+#app__seperator {
+  height: $layout_nav_height - 20px;
+  background-color: var(--color-text-2);
+  width: 2px;
+  border-radius: 5px;
+}
+
+@include layout.not-on-mobile {
+  footer {
+    $footer_side_margin: max(
+      0px,
+      (100vw - layout.$mobile_breakpoint + $nav_snapping)/2
+    );
+    left: $footer_side_margin;
+    right: $footer_side_margin;
+    border-radius: 10px 10px 0px 0px;
+  }
+}
+
+@include layout.on-mobile {
+  main {
+    height: calc(100vh - $layout_nav_height * 2);
+    padding: $content_edge_seperation;
+  }
+}
+
+main::-webkit-scrollbar {
+  width: 5px;    
+  height: 5px;
+}
+
+main::-webkit-scrollbar-track {
+  margin-right: 5px;
+
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-2);
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 50px;
+}
+
+footer>ul[role*="nav"] {
+  max-width: 350px;
+  justify-self: center;
+}
